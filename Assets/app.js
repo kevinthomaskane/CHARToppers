@@ -1,5 +1,9 @@
 
 
+
+var searchParameter 
+
+
  $(document).ready(function(){
      $('.collapsible').collapsible();
      $(".collapsible").hide();
@@ -37,7 +41,7 @@ $(document).on("click", "#shareCommunity", function(){
     console.log(array[0])
 })
 
-var searchParameter 
+
 
 $(document).on("click", "#artistSearch", function(){
     searchParameter = $(this).text();
