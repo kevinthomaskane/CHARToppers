@@ -40,7 +40,7 @@ body {
 }
 #video-container {
     display: inline-block;
-    margin-top: 100px;
+    margin-top: -1000px;
 }
 
 /* Styling for the collapsible */
@@ -84,4 +84,12 @@ body {
     #logo {
       height: 56px;
     }
+}
+
+.dropdown-button,
+.btn,
+.dropdown-search {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
 }
