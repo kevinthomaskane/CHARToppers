@@ -13,10 +13,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="Assets/app.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="" />
-    <title>CHARToppers</title>
+    <title>Community - CHARToppers</title>
 </head>
 
 <body>
+    <!-- Top Nav Bar -->
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper blue lighten-1">
@@ -37,8 +38,10 @@
             </div>
         </nav>
     </div>
+    <!-- END: Top Nav Bar -->
+
+    <!-- Side Nav -->
     <ul class="side-nav fixed grey lighten-1">
-        
         <form>
             <!-- Dropdown Trigger -->
             <a class='dropdown-button btn dropdown-search grey' href='#' data-activates='dropdown1'><i class="material-icons">dehaze</i></a>
@@ -50,69 +53,40 @@
             </ul>
             <div class="input-field inline">
                 <input id="sideSearch" type="text" class="validate">
-                <label for="sideSearch">Search by artist</label>
+                <label for="sideSearch">Search</label>
             </div>
             <a class="btn grey" id="searchSubmit"><i class="material-icons">search</i></a>
         </form>
-        <li>
-            <a class="links" id="current" href="#">Lastest Chart Toppers<span class="right">></span></a>
-        </li>
-        <p>All Time Toppers by Genre</p>
-        <li>
-            <a class="links" id="rap" href="#">Rap<span class="right">></span></a>
-        </li>
-        <li>
-            <a class="links" id="hiphop" href="#">Hip Hop<span class="right">></span></a>
-        </li>
-        <li>
-            <a class="links" id="rb" href="#">R&ampB<span class="right">></span></a>
-        </li>
-        <li>
-            <a class="links" id="pop" href="#">Pop<span class="right">></span></a>
-        </li>
-        <li>
-            <a class="links" id="rock" href="#">Rock<span class="right">></span></a>
-        </li>
-        <li>
-            <a class="links" id="country" href="#">Country<span class="right">></span></a>
-        </li>
+        <!-- Apply favorite cards here -->
+        <ul class="collapsible popout" data-collapsible="accordion"></ul>
     </ul>
+    <!-- END: Side Nav Bar -->
+
+    <!-- Results Side Bar -->
     <div class="side-nav fixed resultBar">
         <!-- Chart list side bar -->
         <div id="resultsArea">
             <ul class="collapsible popout" data-collapsible="accordion"></ul>
         </div>
     </div>
+    <!-- END: Results Side Bar -->
+
+
     <div class="container">
         <div class="row">
-            <div class="col l6 offset-l6">    
-                <div class="slider"> <!-- Will need to clear this div when video is appended below -->
-                    <ul class="slides">
-                        <li>
-                            <img src="Assets/images/slide1.jpg">
-                            <div class="caption center-align">
-                                <h3>CHARTopper</h3>
-                                <h5 class="light grey-text text-lighten-3">Your source for the best hits!</h5>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="Assets/images/slide2.jpeg">
-                            <div class="caption center-align">
-                                <h4>Like certain songs? Create a custom playlist!</h4>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="Assets/images/slide1.jpg">
-                            <div class="caption center-align">
-                                <h3>Community</h3>
-                                <h5 class="light grey-text text-lighten-3">Check out what others are listening to.</h5>
-                            </div>
-                        </li>      
-                    </ul>    
-                </div>
+            <div class="col l6 offset-l3">    
                 <!-- Video embed -->
-                <div id="video-container"></div>
-            </div> 
+                <div id="video"></div>
+            </div>
+            <div class="col l1">
+                <!-- Emoji -->
+                <div id="emoji"></div>
+            </div>
+            <div class="col l5">
+                <!--  -->
+                <div id="comments"></div>
+            </div>
+
         </div>    
     </div>
     
