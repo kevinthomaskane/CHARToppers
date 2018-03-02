@@ -23,6 +23,7 @@ $(document).on("click", "#playYoutube", function () {
     var allText = $(this).parent().parent().text().trim();
     var array = allText.split("Play")
     console.log(array[0])
+    youtubeCall(array[0])
 })
 
 var arrayOfFavorites = [];
@@ -173,7 +174,33 @@ function topHits() {
                     </li>
                  
         `)
+        
+            }
+        })
+    }
 
-        }
-    })
-}
+    
+
+
+
+
+
+function youtubeCall(song){
+        event.preventDefault();
+        var search = song
+        console.log(search);
+        var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&maxResults=1&q=" + search + "lyrics&type=video&key=AIzaSyAjjM5Zlo-im2fzE9Z6ewpsvBw9Q-DIPeo"
+        $.ajax({
+            method: "GET",
+            url: queryURL
+            
+        }).done(function(data){
+            var vidId = data.items[0].id.videoId;
+            console.log(data);
+            console.log(vidId);
+            $(".slider").html('')
+            $("#video-container").html("<blockquote class='embedly-card'><h4><a href='https://www.youtube.com/watch?v=" + vidId + "'></a></h4></blockquote>")
+        });
+        
+    }
+    
