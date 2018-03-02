@@ -1,59 +1,81 @@
 
 
- $(document).ready(function(){
-     $('.collapsible').collapsible();
-     $(".collapsible").hide();
-     $('.slider').slider();
+$(document).ready(function () {
+    $('.collapsible').collapsible();
+    $(".collapsible").hide();
+    $('.slider').slider();
 
 });
 
-$(document).on("click", ".links", function(){
+$(document).on("click", ".links", function () {
     $(".chart-list").empty();
-    if ($(this).attr("id")=== "current"){
+    if ($(this).attr("id") === "current") {
         topHits();
     }
-    else{
-    var query = $(this).attr("id")
-    console.log(query)
-    genreHits(query) 
+    else {
+        var query = $(this).attr("id")
+        console.log(query)
+        genreHits(query)
     }
 })
 
-$(document).on("click", "#playYoutube", function(){
+$(document).on("click", "#playYoutube", function () {
     var allText = $(this).parent().parent().text().trim();
-   var array =  allText.split("Play")
+    var array = allText.split("Play")
     console.log(array[0])
 })
 
-$(document).on("click", "#addFavorite", function(){
+var arrayOfFavorites = [];
+
+$(document).on("click", "#addFavorite", function () {
     var allText = $(this).parent().parent().text().trim();
-   var array =  allText.split("Play")
-    console.log(array[0])
+    var array = allText.split("Play")
+    var playlistSong = array[0].toString().trim()
+    console.log(playlistSong)
+    arrayOfFavorites.push(playlistSong)
+    localStorage.setItem("playlistSong", JSON.stringify(arrayOfFavorites))
+    console.log(JSON.parse(localStorage.getItem("playlistSong")))
 })
 
-$(document).on("click", "#shareCommunity", function(){
+var arrayOfCommunity = [];
+
+$(document).on("click", "#shareCommunity", function () {
     var allText = $(this).parent().parent().text().trim();
-   var array =  allText.split("Play")
-    console.log(array[0])
+    var array = allText.split("Play")
+    var communitySong = array[0]
+    arrayOfCommunity.push(communitySong)
+    localStorage.setItem("communitySong", JSON.stringify(arrayOfCommunity))
 })
 
-var searchParameter 
+var searchParameter
+var clicked = false;
 
-$(document).on("click", "#artistSearch", function(){
+if (!clicked) {
+    $("#sideSearch").disabled("true");
+} else {
+    $("#sideSearch").disabled("false");
+}
+
+
+$(document).on("click", "#artistSearch", function () {
     searchParameter = $(this).text();
+    clicked = true;
 })
 
-$(document).on("click", "#songSearch", function(){
+$(document).on("click", "#songSearch", function () {
     searchParameter = $(this).text();
+    clicked = true;
 })
 
-$(document).on("click", "#searchSubmit", function(){
+
+
+$(document).on("click", "#searchSubmit", function () {
     var userInput = $("#sideSearch").val();
-    if (searchParameter === "artist"){
+    if (searchParameter === "artist") {
         artistHits(userInput)
     }
 
-    if (searchParameter === "song"){
+    if (searchParameter === "song") {
         songHits(userInput)
     }
 })
@@ -129,18 +151,18 @@ function songHits(search) {
         }
     })
 }
-    
+
 function topHits() {
-        $.ajax({
-            method: "GET",
-            url: "http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
-        }).done(function (data) {
-            $(".collapsible").empty();
-           $(".collapsible").show();
-            console.log(data)
-            for (let i = 0; i < data.tracks.track.length; i++) {
-                var obj = data.tracks.track[i].image[2];
-                $(".collapsible").append(`
+    $.ajax({
+        method: "GET",
+        url: "http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+    }).done(function (data) {
+        $(".collapsible").empty();
+        $(".collapsible").show();
+        console.log(data)
+        for (let i = 0; i < data.tracks.track.length; i++) {
+            var obj = data.tracks.track[i].image[2];
+            $(".collapsible").append(`
                      <li class="resultList">
                         <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
                          <div class="collapsible-body">
@@ -151,7 +173,7 @@ function topHits() {
                     </li>
                  
         `)
-        
-            }
-        })
-    }
+
+        }
+    })
+}
