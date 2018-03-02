@@ -51,10 +51,10 @@ $(document).on("click", "#shareCommunity", function () {
 var searchParameter
 var clicked = false;
 
-if (!clicked) {
-    $("#sideSearch").disabled("true");
+if (clicked === false) {
+    $("#sideSearch").attr("disabled", "disabled");
 } else {
-    $("#sideSearch").disabled("false");
+    $("#sideSearch").removeAttr("disabled");
 }
 
 
@@ -72,6 +72,7 @@ $(document).on("click", "#songSearch", function () {
 
 $(document).on("click", "#searchSubmit", function () {
     var userInput = $("#sideSearch").val();
+    console.log(userInput)
     if (searchParameter === "artist") {
         artistHits(userInput)
     }
@@ -108,16 +109,16 @@ function genreHits(search) {
 function artistHits(search) {
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptags&artist=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
         console.log(data)
-        for (let i = 0; i < data.tracks.track.length; i++) {
-            var obj = data.tracks.track[i].image[2];
+        for (let i = 0; i < data.toptracks.track.length; i++) {
+            var obj = data.toptracks.track[i].image[2];
             $(".collapsible").append(`
                  <li class="resultList">
-                    <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
+                    <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.toptracks.track[i].name} - ${data.toptracks.track[i].artist.name}</div>
                      <div class="collapsible-body">
                      <a href="#"><i class="fab fa-youtube"></i><span id="playYoutube"> Play YouTube video</span></a> <br>
                      <a href="#"><i class="far fa-star"></i> <span id="addFavorite">Add to your favorites </span></a><br>
