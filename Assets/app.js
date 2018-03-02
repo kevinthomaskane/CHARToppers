@@ -38,9 +38,6 @@ $(document).on("click", "#addFavorite", function () {
     console.log(JSON.parse(localStorage.getItem("playlistSong")))
 })
 
-    function createChips(){
-
-    }
 
 var arrayOfCommunity = [];
 
