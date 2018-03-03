@@ -26,12 +26,20 @@ $(document).on("click", "#playYoutube", function () {
     youtubeCall(array[0])
 })
 
-var arrayOfFavorites = [];
+if (localStorage.getItem("playlistSong")){
+    var arrayOfFavorites = JSON.parse(localStorage.getItem("playlistSong"));
+}
+else {
+    arrayOfFavorites = [];
+}
+
 
 $(document).on("click", "#addFavorite", function () {
+    Materialize.toast('Added to Favorites', 2000)
     var allText = $(this).parent().parent().text().trim();
     var array = allText.split("Play")
-    var playlistSong = array[0].toString().trim()
+    var track = array[0].split("-")
+    var playlistSong = track[0].toString().trim()
     console.log(playlistSong)
     arrayOfFavorites.push(playlistSong)
     localStorage.setItem("playlistSong", JSON.stringify(arrayOfFavorites))
@@ -42,9 +50,12 @@ $(document).on("click", "#addFavorite", function () {
 var arrayOfCommunity = [];
 
 $(document).on("click", "#shareCommunity", function () {
+    Materialize.toast('Added to Community', 2000)
     var allText = $(this).parent().parent().text().trim();
     var array = allText.split("Play")
-    var communitySong = array[0]
+    var track = array.split("-")
+    console.log(track)
+    var communitySong = track[0]
     arrayOfCommunity.push(communitySong)
     localStorage.setItem("communitySong", JSON.stringify(arrayOfCommunity))
 })
@@ -84,6 +95,7 @@ $(document).on("click", "#searchSubmit", function () {
         songHits(userInput)
     }
 })
+
 
 function genreHits(search) {
     $.ajax({
@@ -133,7 +145,7 @@ function artistHits(search) {
         }
     })
 }
-songHits("humble")
+
 
 function songHits(search) {
     $.ajax({
