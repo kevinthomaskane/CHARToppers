@@ -33,7 +33,7 @@ else {
 
 
 $(document).on("click", "#addFavorite", function () {
-    Materialize.toast('Added to Favorites', 2000)
+    Materialize.toast('Added to Favorites', 2000, "blue")
     var playlistSong = $(this).attr("class")
     arrayOfFavorites.push(playlistSong)
     localStorage.setItem("playlistSong", JSON.stringify(arrayOfFavorites))
@@ -44,9 +44,10 @@ $(document).on("click", "#addFavorite", function () {
 var arrayOfCommunity = [];
 
 $(document).on("click", "#shareCommunity", function () {
-    Materialize.toast('Added to Community', 2000)
+    Materialize.toast('Added to Community', 2000, "blue")
     var communitySong = $(this).attr("class")
     arrayOfCommunity.push(communitySong)
+
     localStorage.setItem("communitySong", JSON.stringify(arrayOfCommunity))
 })
 
@@ -176,8 +177,8 @@ function topHits() {
                         <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
                          <div class="collapsible-body">
                         <a id="playYoutube" class="${data.tracks.track[i].name}" href="#"> <i class="fab fa-youtube"></i>Play YouTube video</a> <br>
-                        <a id="playYoutube" class="${data.tracks.track[i].name}" href="#"> <i class="far fa-star"></i>Add to your favorites</a> <br>
-                         <a id="playYoutube" class="${data.tracks.track[i].name}" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
+                        <a id="addFavorite" class="${data.tracks.track[i].name}" href="#"> <i class="far fa-star"></i>Add to your favorites</a> <br>
+                         <a id="shareCommunity" class="${data.tracks.track[i].name}" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
                          </div>
                     </li>
                  
