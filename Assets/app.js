@@ -20,10 +20,8 @@ $(document).on("click", ".links", function () {
 })
 
 $(document).on("click", "#playYoutube", function () {
-    var allText = $(this).parent().parent().text().trim();
-    var array = allText.split("Play")
-    console.log(array[0])
-    youtubeCall(array[0])
+    var search = $(this).attr("class")
+    youtubeCall(search)
 })
 
 if (localStorage.getItem("playlistSong")){
@@ -36,11 +34,7 @@ else {
 
 $(document).on("click", "#addFavorite", function () {
     Materialize.toast('Added to Favorites', 2000)
-    var allText = $(this).parent().parent().text().trim();
-    var array = allText.split("Play")
-    var track = array[0].split("-")
-    var playlistSong = track[0].toString().trim()
-    console.log(playlistSong)
+    var playlistSong = $(this).attr("class")
     arrayOfFavorites.push(playlistSong)
     localStorage.setItem("playlistSong", JSON.stringify(arrayOfFavorites))
     console.log(JSON.parse(localStorage.getItem("playlistSong")))
@@ -51,11 +45,7 @@ var arrayOfCommunity = [];
 
 $(document).on("click", "#shareCommunity", function () {
     Materialize.toast('Added to Community', 2000)
-    var allText = $(this).parent().parent().text().trim();
-    var array = allText.split("Play")
-    var track = array.split("-")
-    console.log(track)
-    var communitySong = track[0]
+    var communitySong = $(this).attr("class")
     arrayOfCommunity.push(communitySong)
     localStorage.setItem("communitySong", JSON.stringify(arrayOfCommunity))
 })
@@ -111,9 +101,9 @@ function genreHits(search) {
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
                      <div class="collapsible-body">
-                     <a id="playYoutube" href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
-                     <a id="addFavorite" href="#"><i class="far fa-star"></i> <span >Add to your favorites</a><br>
-                     <a id="shareCommunity" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
+                     <a id="playYoutube" class="${data.tracks.track[i].name}" href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
+                     <a id="addFavorite" class="${data.tracks.track[i].name}" href="#"><i class="far fa-star"></i> <span >Add to your favorites</a><br>
+                     <a id="shareCommunity" class="${data.tracks.track[i].name}" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
                      </div>
                 </li>     
              `)
@@ -136,9 +126,9 @@ function artistHits(search) {
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.toptracks.track[i].name} - ${data.toptracks.track[i].artist.name}</div>
                      <div class="collapsible-body">
-                     <a id="playYoutube" href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
-                     <a id="addFavorite" href="#"><i class="far fa-star"></i>Add to your favorites</a><br>
-                     <a id="shareCommunity" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
+                     <a id="playYoutube" class="${data.tracks.track[i].name}" href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
+                     <a id="addFavorite" class="${data.tracks.track[i].name}" href="#"><i class="far fa-star"></i>Add to your favorites</a><br>
+                     <a id="shareCommunity" class="${data.tracks.track[i].name}" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
                      </div>
                 </li>     
              `)
@@ -161,9 +151,9 @@ function songHits(search) {
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[i].name} - ${data.results.trackmatches.track[i].artist}</div>
                      <div class="collapsible-body">
-                     <a id="playYoutube" href="#"><i class="fab fa-youtube"></i> Play YouTube video</a> <br>
-                     <a id="addFavorite" href="#"><i class="far fa-star"></i>Add to your favorites </a><br>
-                     <a id="shareCommunity" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
+                     <a id="playYoutube" class="${data.results.trackmatches.track[i].name}" href="#"><i class="fab fa-youtube"></i> Play YouTube video</a> <br>
+                     <a id="addFavorite" class="${data.results.trackmatches.track[i].name}" href="#"><i class="far fa-star"></i>Add to your favorites </a><br>
+                     <a id="shareCommunity" class="${data.results.trackmatches.track[i].name}" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
                      </div>
                 </li>     
              `)
@@ -185,9 +175,9 @@ function topHits() {
                      <li class="resultList">
                         <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
                          <div class="collapsible-body">
-                        <a id="playYoutube" href="#"> <i class="fab fa-youtube"></i>Play YouTube video</a> <br>
-                        <a id="playYoutube" href="#"> <i class="far fa-star"></i>Add to your favorites</a> <br>
-                         <a id="playYoutube" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
+                        <a id="playYoutube" class="${data.tracks.track[i].name}" href="#"> <i class="fab fa-youtube"></i>Play YouTube video</a> <br>
+                        <a id="playYoutube" class="${data.tracks.track[i].name}" href="#"> <i class="far fa-star"></i>Add to your favorites</a> <br>
+                         <a id="playYoutube" class="${data.tracks.track[i].name}" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
                          </div>
                     </li>
                  
