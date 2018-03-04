@@ -104,6 +104,6 @@ box-shadow: 0 1px 0 0 #9e9e9e !important;
 }
 
 #video-container {
-    display: inline-block;
-    margin-top: -1000px;
+    display: block;
+    margin-top: -400px;
 }
