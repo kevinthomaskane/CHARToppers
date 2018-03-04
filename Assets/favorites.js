@@ -43,10 +43,20 @@ if (localStorage.getItem("favoriteImage")) {
 
     }
 }
+var title = "";
+var artist = "";
 
 $(document).on("click", "#playYoutube", function () {
     var search = $(this).attr("class")
+    var songInfo = $(this).parent().parent().text();
+    var songInfoSplit =  songInfo.split("Play");
+    var justSongInfo = songInfoSplit[0].trim();
+    var titleArtist = justSongInfo.split("-");
+    console.log(titleArtist);
+    title = titleArtist[0];
+    artist = titleArtist[1];
     youtubeCall(search)
+    lyricsCall();
 })
 
 function youtubeCall(song) {
@@ -63,9 +73,24 @@ function youtubeCall(song) {
         console.log(data);
         console.log(vidId);
         $(".slider").html('')
-        $("#video-container").html("<blockquote class='embedly-card'><h4><a href='https://www.youtube.com/watch?v=" + vidId + "'></a></h4></blockquote>")
+        $("#video").html("<blockquote class='embedly-card'><h4><a href='https://www.youtube.com/watch?v=" + vidId + "'></a></h4></blockquote>")
     });
 
+}
+
+function lyricsCall() {
+    var queryURL = "https://orion.apiseeds.com/api/music/lyric/" + artist + "/" + title + "?apikey=dc5zX5sbKhjid5nFwa1slg1TQ9Cz2eAC1QbtW7KHL7SHSu84gHT1II8tLSylhRQk ";
+
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      crossDomain: true
+    }).then(function(response) {
+        var lyrics = response.result.track.text;
+        var formatLyrics = lyrics.replace(/\n/ig, '<br/>');
+        console.log(formatLyrics);
+      $("#lyrics-result").html("<h5>"+artist+"-"+title+" Lyrics</h5>"+formatLyrics);
+    });
 }
 
 
