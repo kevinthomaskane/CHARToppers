@@ -16,7 +16,7 @@ if (localStorage.getItem("playlistSong")) {
             $(".collapsible").append(`
                      <li class="resultList">
                         <div class="collapsible-header truncate z-depth-1"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[0].name} - ${data.results.trackmatches.track[0].artist}</div>
-                         <div class="collapsible-body">
+                         <div class="collapsible-body z-depth-1">
                          <a id="playYoutube" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
                          <a id="shareCommunity" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fas fa-share-alt"></i>Share with community</a>
                          </div>
