@@ -147,9 +147,9 @@ function artistHits(search) {
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.toptracks.track[i].name} - ${data.toptracks.track[i].artist.name}</div>
                      <div class="collapsible-body">
-                     <a id="playYoutube" class="${data.tracks.track[i].name} ${data.toptracks.track[i].artist.name}" href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
-                     <a id="addFavorite" class="${data.tracks.track[i].name} ${data.toptracks.track[i].artist.name}" href="#"><i class="far fa-star"></i>Add to your favorites</a><br>
-                     <a id="shareCommunity" class="${data.tracks.track[i].name} ${data.toptracks.track[i].artist.name}" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
+                     <a id="playYoutube" class="${data.toptracks.track[i].name} ${data.toptracks.track[i].artist.name}" href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
+                     <a id="addFavorite" class="${data.toptracks.track[i].name} ${data.toptracks.track[i].artist.name}" href="#"><i class="far fa-star"></i>Add to your favorites</a><br>
+                     <a id="shareCommunity" class="${data.toptracks.track[i].name} ${data.toptracks.track[i].artist.name}" href="#"><i class="fas fa-share-alt"></i>Share with community</a>
                      </div>
                 </li>     
              `)

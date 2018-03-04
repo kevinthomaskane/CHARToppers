@@ -1,5 +1,7 @@
 
-
+$(document).ready(function(){
+    $('.slider').slider();
+  });
 
 if (localStorage.getItem("playlistSong")) {
     var arrayOfFavs = JSON.parse(localStorage.getItem("playlistSong"));
