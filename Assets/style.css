@@ -28,7 +28,7 @@ body {
 /* Styling for the collapsible */
 .collapsible{
     margin-left: 40px;
-    width: 375px;
+    width: 320px;
     
 }
 
@@ -40,10 +40,11 @@ body {
 }
 
 .collapsible-header{
-    padding: 5px;
+    padding: 0px 5px !important;
     line-height: 50px;
     text-align: center;
     vertical-align: middle;
+    width: 290px;
 }
 .collapsible-body{
     background-color: black !important;
@@ -96,7 +97,7 @@ box-shadow: 0 1px 0 0 #9e9e9e !important;
 }
 
 #main-content {
-    margin-left: 615px;
+    margin-left: 500px;
 }
 
 .slider {
