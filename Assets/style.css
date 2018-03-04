@@ -7,18 +7,12 @@ body {
 }
 
 .side-nav{
-    background-color: rgb(153, 156, 158);
     width: 240px;
     margin-top: 64px;
     color: white;
 }
 .side-nav li>a {
     color: white;
-    font-size: 12pt;
-}
-.side-nav p {
-    margin: 0px 20px 0px;
-    font-weight: bold;
     font-size: 12pt;
 }
 
