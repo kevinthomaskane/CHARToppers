@@ -76,8 +76,12 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
+    width: 5px;
+    height: 10px;
+    background: #424242;
+}
+::-webkit-scrollbar-thumb {
+    background: #42a5f5; 
 }
 /* End */
 
