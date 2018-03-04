@@ -27,20 +27,36 @@ $(document).on("click", "#playYoutube", function () {
 
 if (localStorage.getItem("playlistSong")) {
     var arrayOfFavorites = JSON.parse(localStorage.getItem("playlistSong"));
+
 }
 else {
     arrayOfFavorites = [];
+
 }
 
+if (localStorage.getItem("favoriteImage")) {
+    var arrayOfImages = JSON.parse(localStorage.getItem("favoriteImage"));
+}
+else {
+    arrayOfImages = [];
+}
 
 $(document).on("click", "#addFavorite", function () {
     Materialize.toast('Added to Favorites', 2000, "blue")
     var playlistSong = $(this).attr("class")
+    var favoriteImage = $(this).parent().parent().children().find("img").attr("src")
     if (arrayOfFavorites.indexOf(playlistSong) === -1) {
         arrayOfFavorites.push(playlistSong)
         localStorage.setItem("playlistSong", JSON.stringify(arrayOfFavorites))
         console.log(JSON.parse(localStorage.getItem("playlistSong")))
     }
+    if (arrayOfImages.indexOf(favoriteImage) === -1) {
+        arrayOfImages.push(favoriteImage)
+        localStorage.setItem("favoriteImage", JSON.stringify(arrayOfImages))
+        console.log(JSON.parse(localStorage.getItem("favoriteImage")))
+    }
+
+
 
 })
 

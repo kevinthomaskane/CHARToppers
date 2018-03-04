@@ -1,16 +1,16 @@
 
 
 
-if (localStorage.getItem("playlistSong")){
+if (localStorage.getItem("playlistSong")) {
     var arrayOfFavs = JSON.parse(localStorage.getItem("playlistSong"));
     console.log(arrayOfFavs)
-    for (let i = 0; i < arrayOfFavs.length; i++){
+    for (let i = 0; i < arrayOfFavs.length; i++) {
         var search = arrayOfFavs[i];
         console.log(search)
         $.ajax({
             method: "GET",
             url: "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
-        }).done(function (data){
+        }).done(function (data) {
             console.log(data)
             var obj = data.results.trackmatches.track[0].image[2];
             $(".collapsible").append(`
@@ -27,12 +27,29 @@ if (localStorage.getItem("playlistSong")){
     }
 }
 
+if (localStorage.getItem("favoriteImage")) {
+    var arrayOfImgs = JSON.parse(localStorage.getItem("favoriteImage"));
+    for (let i = 0; i < arrayOfImgs.length; i++) {
+        $(".slides").append(`
+                 <li>
+                     <img src="${arrayOfImgs[i]}">
+                        <div class="caption center-align">
+                             <h3>CHARTopper</h3>
+                            <h5 class="light grey-text text-lighten-3">Your source for the best hits!</h5>
+                        </div>
+                </li>
+        
+        `)
+
+    }
+}
+
 $(document).on("click", "#playYoutube", function () {
     var search = $(this).attr("class")
     youtubeCall(search)
 })
 
-function youtubeCall(song){
+function youtubeCall(song) {
     event.preventDefault();
     var search = song
     console.log(search);
@@ -40,15 +57,15 @@ function youtubeCall(song){
     $.ajax({
         method: "GET",
         url: queryURL
-        
-    }).done(function(data){
+
+    }).done(function (data) {
         var vidId = data.items[0].id.videoId;
         console.log(data);
         console.log(vidId);
         $(".slider").html('')
         $("#video-container").html("<blockquote class='embedly-card'><h4><a href='https://www.youtube.com/watch?v=" + vidId + "'></a></h4></blockquote>")
     });
-    
+
 }
 
 
