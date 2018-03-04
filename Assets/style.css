@@ -103,7 +103,12 @@ box-shadow: 0 1px 0 0 #9e9e9e !important;
     margin-top: 100px;
 }
 
+.slider .indicators .indicator-item.active {
+    background-color: #42a5f5;
+}
+
 #video-container {
     display: block;
     margin-top: -400px;
 }
+
