@@ -2,10 +2,6 @@ body {
     background: black;
 }
 
-.nav-wrapper {
-    background-color: rgb(63, 169, 245);
-}
-
 #logo {
     vertical-align: top;
 }
@@ -92,4 +88,16 @@ body {
     padding-left: 5px;
     padding-right: 5px;
     margin-left: 5px;
+}
+
+.input-field, inline{
+    width: 150px;
+}
+.input-field input[type=text]:focus + label {
+    color: white !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+border-bottom: 1px solid white !important;
+box-shadow: 0 1px 0 0 #9e9e9e !important;
 }
