@@ -12,13 +12,13 @@ if (localStorage.getItem("playlistSong")){
             url: "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
         }).done(function (data){
             console.log(data)
-            var obj = data.results.trackmatches.track[i].image[2];
+            var obj = data.results.trackmatches.track[0].image[2];
             $(".collapsible").append(`
                      <li class="resultList">
-                        <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[i].name} - ${data.results.trackmatches.track[i].artist}</div>
+                        <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[0].name} - ${data.results.trackmatches.track[0].artist}</div>
                          <div class="collapsible-body">
-                         <a id="playYoutube" class="${data.results.trackmatches.track[i].name}"href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
-                         <a id="shareCommunity" class="${data.results.trackmatches.track[i].name}"href="#"><i class="fas fa-share-alt"></i>Share with community</a>
+                         <a id="playYoutube" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
+                         <a id="shareCommunity" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fas fa-share-alt"></i>Share with community</a>
                          </div>
                     </li>  
             `)
