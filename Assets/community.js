@@ -25,9 +25,26 @@ $(document).on("click", "#shareCommunity", function () {
 });
 
 database.ref().on("value", function(snapshot) {
-    console.log("Here's what Firebase sent back: " + snapshot.val());
     arrayOfCommunity = snapshot.val().communityList;
-    console.log("Here's what Firebase sent back: " + arrayOfCommunity);
 }, function(errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
+
+
+  function snapshotToArray(snapshot) {
+    var returnArr = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+
+        returnArr.push(item);
+    });
+
+    return returnArr;
+    console.log("This should be an array: " + returnArr);
+};
+
+firebase.database().ref('communityList').on('value', function(snapshot) {
+  console.log(snapshotToArray(snapshot));
+});
