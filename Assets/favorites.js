@@ -1,7 +1,5 @@
 
-$(document).ready(function(){
-    $('.slider').slider();
-  });
+
 
 if (localStorage.getItem("playlistSong")) {
     var arrayOfFavs = JSON.parse(localStorage.getItem("playlistSong"));
@@ -11,7 +9,7 @@ if (localStorage.getItem("playlistSong")) {
         console.log(search)
         $.ajax({
             method: "GET",
-            url: "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+            url: "https://ws.audioscrobbler.com/2.0/?method=track.search&track=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
         }).done(function (data) {
             console.log(data)
             var obj = data.results.trackmatches.track[0].image[2];
@@ -32,26 +30,22 @@ if (localStorage.getItem("playlistSong")) {
 if (localStorage.getItem("favoriteImage")) {
     var arrayOfImgs = JSON.parse(localStorage.getItem("favoriteImage"));
     for (let i = 0; i < arrayOfImgs.length; i++) {
-        $(".slides").append(`
-                 <li>
-                     <img src="${arrayOfImgs[i]}">
-                        <div class="caption center-align">
-                             <h3>CHARTopper</h3>
-                            <h5 class="light grey-text text-lighten-3">Your source for the best hits!</h5>
-                        </div>
-                </li>
-        
+        console.log(arrayOfImgs[i])
+        $(".carousel").append(`
+        <a class="carousel-item" href="#one!"> <img src="${arrayOfImgs[i]}"> </a>
         `)
-
     }
+    $(".carousel").carousel();
+
 }
+
 var title = "";
 var artist = "";
 
 $(document).on("click", "#playYoutube", function () {
     var search = $(this).attr("class")
     var songInfo = $(this).parent().parent().text();
-    var songInfoSplit =  songInfo.split("Play");
+    var songInfoSplit = songInfo.split("Play");
     var justSongInfo = songInfoSplit[0].trim();
     var titleArtist = justSongInfo.split("-");
     console.log(titleArtist);
@@ -84,14 +78,14 @@ function lyricsCall() {
     var queryURL = "https://orion.apiseeds.com/api/music/lyric/" + artist + "/" + title + "?apikey=dc5zX5sbKhjid5nFwa1slg1TQ9Cz2eAC1QbtW7KHL7SHSu84gHT1II8tLSylhRQk ";
 
     $.ajax({
-      url: queryURL,
-      method: 'GET',
-      crossDomain: true
-    }).then(function(response) {
+        url: queryURL,
+        method: 'GET',
+        crossDomain: true
+    }).then(function (response) {
         var lyrics = response.result.track.text;
         var formatLyrics = lyrics.replace(/\n/ig, '<br/>');
         console.log(formatLyrics);
-      $("#lyrics-result").html("<h5>"+artist+"-"+title+" Lyrics</h5>"+formatLyrics);
+        $("#lyrics-result").html("<h5>" + artist + "-" + title + " Lyrics</h5>" + formatLyrics);
     });
 }
 

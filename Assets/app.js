@@ -111,7 +111,7 @@ $(document).on("click", "#searchSubmit", function () {
 function genreHits(search) {
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
@@ -136,7 +136,7 @@ function artistHits(search) {
     console.log("hello")
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
@@ -161,7 +161,7 @@ function artistHits(search) {
 function songHits(search) {
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "https://ws.audioscrobbler.com/2.0/?method=track.search&track=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
@@ -185,7 +185,7 @@ function songHits(search) {
 function topHits() {
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "https://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
