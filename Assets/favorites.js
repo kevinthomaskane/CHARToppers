@@ -28,6 +28,10 @@ if (localStorage.getItem("playlistSong")) {
 }
 
 
+$(document).on("click", "#playYoutube", function(){
+    $(".carousel").html("")
+})
+
 
 if (localStorage.getItem("favoriteImage")) {
     var arrayOfImgs = JSON.parse(localStorage.getItem("favoriteImage"));
