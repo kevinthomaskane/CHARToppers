@@ -47,7 +47,6 @@ $(document).on("click", "#addFavorite", function () {
     var favoriteImage = $(this).parent().parent().children().find("img").attr("src")
     if (arrayOfFavorites.indexOf(playlistSong) === -1) {
         arrayOfFavorites.push(playlistSong)
-        console.log(arrayOfFavorites)
         localStorage.setItem("playlistSong", JSON.stringify(arrayOfFavorites))
         console.log(JSON.parse(localStorage.getItem("playlistSong")))
     }
@@ -61,32 +60,26 @@ $(document).on("click", "#addFavorite", function () {
 
 })
 
-if (localStorage.getItem("commImage")) {
-    var array = JSON.parse(localStorage.getItem("commImage"));
-}
-else {
-    array = [];
-}
+
+var arrayOfCommunity = [];
 
 $(document).on("click", "#shareCommunity", function () {
-    Materialize.toast('Added to Community', 2000, "blue");
-    var commImage = $(this).parent().parent().children().find("img").attr("src");
-    console.log(commImage);
-    if (array.indexOf(commImage) === -1) {
-        array.push(commImage);
-        localStorage.setItem("commImage", JSON.stringify(array))
-    }
+    Materialize.toast('Added to Community', 2000, "blue")
+    var communitySong = $(this).attr("class")
+    arrayOfCommunity.push(communitySong)
+
+    localStorage.setItem("communitySong", JSON.stringify(arrayOfCommunity))
 })
 
 var searchParameter = "Artist";
-// var clicked = false;
+var clicked = false;
 
-// if (clicked === false) {
-//     console.log("false")
-//     $(".input-field").hide();
-// } else {
-//     $("#sideSearch").removeAttr("disabled");
-// }
+if (clicked === false) {
+    console.log("false")
+    $(".input-field").hide();
+} else {
+    $("#sideSearch").removeAttr("disabled");
+}
 
 
 $(document).on("click", "#artistSearch", function () {
