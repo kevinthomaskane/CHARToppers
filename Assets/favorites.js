@@ -17,8 +17,8 @@ if (localStorage.getItem("playlistSong")) {
                      <li class="resultList">
                         <div class="collapsible-header truncate z-depth-1"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[0].name} - ${data.results.trackmatches.track[0].artist}</div>
                          <div class="collapsible-body z-depth-1">
-                         <a id="playYoutube" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fab fa-youtube"></i>Play YouTube video</a> <br>
-                         <a id="shareCommunity" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fas fa-share-alt"></i>Share with community</a>
+                         <a id="playYoutube" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fab fa-youtube"></i> Play YouTube video</a> <br>
+                         <a id="shareCommunity" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fas fa-share-alt"></i> Share with community</a>
                          </div>
                     </li>  
             `)
@@ -97,5 +97,48 @@ function lyricsCall() {
     });
 }
 
+if (localStorage.getItem("commImage")) {
+    var array = JSON.parse(localStorage.getItem("commImage"));
+ }
+ else {
+    array = [];
+ }
+ 
+ $(document).on("click", "#shareCommunity", function () {
+    Materialize.toast('Added to Community', 2000, "blue");
+    var commImage = $(this).parent().parent().children().find("img").attr("src");
+    console.log(commImage);
+    if (array.indexOf(commImage) === -1) {
+        array.push(commImage);
+        localStorage.setItem("commImage", JSON.stringify(array))
+    }
+ })
 
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBNbAVWvS2T4Zd8C24AdMh8mil2LilBvMg",
+    authDomain: "unexmusicgroupproject.firebaseapp.com",
+    databaseURL: "https://unexmusicgroupproject.firebaseio.com",
+    projectId: "unexmusicgroupproject",
+    storageBucket: "unexmusicgroupproject.appspot.com",
+    messagingSenderId: "360432454628"
+  };
+  firebase.initializeApp(config);
+
+
+
+  var database = firebase.database();
+
+  
+
+$(document).on("click", "#shareCommunity", function () {
+    var songName= $(this).attr("class");
+    console.log(songName);
+  database.ref(songName).set({
+    added: true,
+    comments: [],
+    reactions: []
+  });
+});
 

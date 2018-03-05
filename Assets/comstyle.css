@@ -148,6 +148,10 @@ box-shadow: 0 1px 0 0 #9e9e9e !important;
 .fab {
     color: red;
 }
+.far {
+    color: gold;
+}
+
 /* Test Area */
 #video, #reactionArea, #reactionSubmit, #commentArea, #commentBox {
     border: dotted;
