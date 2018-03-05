@@ -48,3 +48,56 @@ database.ref().on("value", function(snapshot) {
 firebase.database().ref('communityList').on('value', function(snapshot) {
   console.log(snapshotToArray(snapshot));
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).on("click", "#playYoutube", function(){
+  $(".carousel").html("")
+})
+
+
+if (localStorage.getItem("favoriteImage")) {
+  var arrayOfImgs = JSON.parse(localStorage.getItem("commImage"));
+  for (let i = 0; i < arrayOfImgs.length; i++) {
+      
+      console.log(arrayOfImgs[i])
+      $(".carousel").append(`
+      <a class="carousel-item" href="#one!"> <img src="${arrayOfImgs[i]}"> </a>
+      `)
+      $('.carousel-item').first().addClass('active');
+  }
+  $(".carousel").carousel();
+
+}
