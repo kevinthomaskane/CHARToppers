@@ -47,6 +47,7 @@ $(document).on("click", "#addFavorite", function () {
     var favoriteImage = $(this).parent().parent().children().find("img").attr("src")
     if (arrayOfFavorites.indexOf(playlistSong) === -1) {
         arrayOfFavorites.push(playlistSong)
+        console.log(arrayOfFavorites)
         localStorage.setItem("playlistSong", JSON.stringify(arrayOfFavorites))
         console.log(JSON.parse(localStorage.getItem("playlistSong")))
     }
@@ -60,26 +61,32 @@ $(document).on("click", "#addFavorite", function () {
 
 })
 
-
-var arrayOfCommunity = [];
+if (localStorage.getItem("commImage")) {
+    var array = JSON.parse(localStorage.getItem("commImage"));
+}
+else {
+    array = [];
+}
 
 $(document).on("click", "#shareCommunity", function () {
-    Materialize.toast('Added to Community', 2000, "blue")
-    var communitySong = $(this).attr("class")
-    arrayOfCommunity.push(communitySong)
-
-    localStorage.setItem("communitySong", JSON.stringify(arrayOfCommunity))
+    Materialize.toast('Added to Community', 2000, "blue");
+    var commImage = $(this).parent().parent().children().find("img").attr("src");
+    console.log(commImage);
+    if (array.indexOf(commImage) === -1) {
+        array.push(commImage);
+        localStorage.setItem("commImage", JSON.stringify(array))
+    }
 })
 
 var searchParameter = "Artist";
-var clicked = false;
+// var clicked = false;
 
-if (clicked === false) {
-    console.log("false")
-    $(".input-field").hide();
-} else {
-    $("#sideSearch").removeAttr("disabled");
-}
+// if (clicked === false) {
+//     console.log("false")
+//     $(".input-field").hide();
+// } else {
+//     $("#sideSearch").removeAttr("disabled");
+// }
 
 
 $(document).on("click", "#artistSearch", function () {
@@ -111,13 +118,13 @@ $(document).on("click", "#searchSubmit", function () {
 function genreHits(search) {
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
         console.log(data)
         for (let i = 0; i < data.tracks.track.length; i++) {
-            var obj = data.tracks.track[i].image[2];
+            var obj = data.tracks.track[i].image[3];
             $(".collapsible").append(`
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
@@ -136,13 +143,13 @@ function artistHits(search) {
     console.log("hello")
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
         console.log(data)
         for (let i = 0; i < data.toptracks.track.length; i++) {
-            var obj = data.toptracks.track[i].image[2];
+            var obj = data.toptracks.track[i].image[3];
             $(".collapsible").append(`
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.toptracks.track[i].name} - ${data.toptracks.track[i].artist.name}</div>
@@ -161,13 +168,13 @@ function artistHits(search) {
 function songHits(search) {
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "https://ws.audioscrobbler.com/2.0/?method=track.search&track=" + search + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
         console.log(data)
         for (let i = 0; i < data.results.trackmatches.track.length; i++) {
-            var obj = data.results.trackmatches.track[i].image[2];
+            var obj = data.results.trackmatches.track[i].image[3];
             $(".collapsible").append(`
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[i].name} - ${data.results.trackmatches.track[i].artist}</div>
@@ -185,13 +192,13 @@ function songHits(search) {
 function topHits() {
     $.ajax({
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+        url: "https://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
     }).done(function (data) {
         $(".collapsible").empty();
         $(".collapsible").show();
         console.log(data)
         for (let i = 0; i < data.tracks.track.length; i++) {
-            var obj = data.tracks.track[i].image[2];
+            var obj = data.tracks.track[i].image[3];
             $(".collapsible").append(`
                      <li class="resultList">
                         <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
