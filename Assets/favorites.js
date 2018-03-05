@@ -27,13 +27,17 @@ if (localStorage.getItem("playlistSong")) {
     }
 }
 
+
+
 if (localStorage.getItem("favoriteImage")) {
     var arrayOfImgs = JSON.parse(localStorage.getItem("favoriteImage"));
     for (let i = 0; i < arrayOfImgs.length; i++) {
+        
         console.log(arrayOfImgs[i])
         $(".carousel").append(`
         <a class="carousel-item" href="#one!"> <img src="${arrayOfImgs[i]}"> </a>
         `)
+        $('.carousel-item').first().addClass('active');
     }
     $(".carousel").carousel();
 
