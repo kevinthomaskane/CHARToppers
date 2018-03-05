@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="Assets/style.css">
+    <link rel="stylesheet" href="Assets/comstyle.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="Assets/community.js"></script>
@@ -42,52 +42,60 @@
 
     <!-- Side Nav -->
     <ul class="side-nav fixed grey lighten-1">
-        <form>
-            <!-- Dropdown Trigger -->
-            <a class='dropdown-button btn dropdown-search grey' href='#' data-activates='dropdown1'><i class="material-icons">dehaze</i></a>
-
-            <!-- Dropdown Structure -->
-            <ul id='dropdown1' class='dropdown-content grey'>
-                <li><a id="artistSearch" href="#!">Artist</a></li>
-                <li><a id="songSearch" href="#!">Title</a></li>
-            </ul>
-            <div class="input-field inline">
-                <input id="sideSearch" type="text" class="validate">
-                <label for="sideSearch">Search</label>
-            </div>
-            <a class="btn grey" id="searchSubmit"><i class="material-icons">search</i></a>
-        </form>
         <!-- Apply favorite cards here -->
         <ul class="collapsible popout" data-collapsible="accordion"></ul>
     </ul>
     <!-- END: Side Nav Bar -->
 
     <!-- Results Side Bar -->
-    <div class="side-nav fixed resultBar">
-        <!-- Chart list side bar -->
+    <!-- <div class="side-nav fixed resultBar">
         <div id="resultsArea">
             <ul class="collapsible popout" data-collapsible="accordion"></ul>
         </div>
-    </div>
+    </div> -->
     <!-- END: Results Side Bar -->
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col l6 offset-l3">    
-                <!-- Video embed -->
-                <div id="video"></div>
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="carousel"> <!-- Will need to clear this div when video is appended below -->
+                </div>
             </div>
-            <div class="col l1">
-                <!-- Emoji -->
-                <div id="emoji"></div>
-            </div>
-            <div class="col l5">
-                <!--  -->
-                <div id="comments"></div>
-            </div>
+            <div class="row video-lyrics">
+                <div class="col l7">    
+                    <!-- Video embed -->
+                    <div id="video">
+                        <blockquote class="embedly-card"><h4><a href="https://www.youtube.com/watch?v=XR7Ev14vUh8"></blockquote>
+                    </div>
+                </div>
+                <div class="col l1">    
+                    <!-- Emoji Here -->
+                    <div id="reactionArea"></div>
+                    <div id="reactionSubmit">
+                        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>&#x1F923</a>
+                            <!-- Dropdown Structure -->
+                            <ul id='dropdown1' class='dropdown-content'>
+                                <li><a href="#!">&#x1F923</a></li>
+                                <li><a href="#!">&#x1F923</a></li>
+                            </ul>
+                    </div>
+                </div>
+                <div class="col l4">
+                    <!-- Comments Here -->
+                    <div id="commentArea"></div>
+                    <div id="commentBox">
+                        <div class="row commentInput">
+                            <div class="input-field col s9">
+                                <textarea></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        </div>    
+            </div>    
+        </div>
     </div>
     
     
