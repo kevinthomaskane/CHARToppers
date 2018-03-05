@@ -43,7 +43,7 @@ database.ref().on("value", function(snap) {
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[0].name} - ${data.results.trackmatches.track[0].artist}</div>
                     <div class="collapsible-body">
                     <a id="playYoutube" class="${data.results.trackmatches.track[0].name}"href="#"><i class="fab fa-youtube"></i> Play YouTube video</a> <br>
-                    <a id="shareCommunity" class="${data.results.trackmatches.track[0].name}"href="#"><i class="fas fa-share-alt"></i> Share with community</a>
+                    <a id="addFavorite" class="${data.results.trackmatches.track[0].name}" href="#"><i class="far fa-star"></i> Add to your favorites</a>
                     </div>
                     </li>  
             `)
@@ -79,4 +79,39 @@ database.ref().on("value", function(snap) {
 var search = $(this).attr("class");     
     youtubeCall(search)
   });
+
+  if (localStorage.getItem("playlistSong")) {
+    var arrayOfFavorites = JSON.parse(localStorage.getItem("playlistSong"));
+
+}
+else {
+    arrayOfFavorites = [];
+
+}
+
+if (localStorage.getItem("favoriteImage")) {
+    var arrayOfImages = JSON.parse(localStorage.getItem("favoriteImage"));
+}
+else {
+    arrayOfImages = [];
+}
+
+  $(document).on("click", "#addFavorite", function () {
+    Materialize.toast('Added to Favorites', 2000, "blue")
+    var playlistSong = $(this).attr("class")
+    var favoriteImage = $(this).parent().parent().children().find("img").attr("src")
+    if (arrayOfFavorites.indexOf(playlistSong) === -1) {
+        arrayOfFavorites.push(playlistSong)
+        localStorage.setItem("playlistSong", JSON.stringify(arrayOfFavorites))
+        console.log(JSON.parse(localStorage.getItem("playlistSong")))
+    }
+    if (arrayOfImages.indexOf(favoriteImage) === -1) {
+        arrayOfImages.push(favoriteImage)
+        localStorage.setItem("favoriteImage", JSON.stringify(arrayOfImages))
+        console.log(JSON.parse(localStorage.getItem("favoriteImage")))
+    }
+
+
+
+})
     
