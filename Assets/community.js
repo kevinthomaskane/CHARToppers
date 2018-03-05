@@ -34,7 +34,7 @@ database.ref().on("value", function(snap) {
         console.log(prop);
         $.ajax({
             method: "GET",
-            url: "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + prop + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
+            url: "https://ws.audioscrobbler.com/2.0/?method=track.search&track=" + prop + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
         }).done(function (data){
             console.log(data)
             var obj = data.results.trackmatches.track[0].image[2];
