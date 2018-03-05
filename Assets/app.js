@@ -117,7 +117,7 @@ function genreHits(search) {
         $(".collapsible").show();
         console.log(data)
         for (let i = 0; i < data.tracks.track.length; i++) {
-            var obj = data.tracks.track[i].image[2];
+            var obj = data.tracks.track[i].image[3];
             $(".collapsible").append(`
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
@@ -142,7 +142,7 @@ function artistHits(search) {
         $(".collapsible").show();
         console.log(data)
         for (let i = 0; i < data.toptracks.track.length; i++) {
-            var obj = data.toptracks.track[i].image[2];
+            var obj = data.toptracks.track[i].image[3];
             $(".collapsible").append(`
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.toptracks.track[i].name} - ${data.toptracks.track[i].artist.name}</div>
@@ -167,7 +167,7 @@ function songHits(search) {
         $(".collapsible").show();
         console.log(data)
         for (let i = 0; i < data.results.trackmatches.track.length; i++) {
-            var obj = data.results.trackmatches.track[i].image[2];
+            var obj = data.results.trackmatches.track[i].image[3];
             $(".collapsible").append(`
                  <li class="resultList">
                     <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[i].name} - ${data.results.trackmatches.track[i].artist}</div>
@@ -191,7 +191,7 @@ function topHits() {
         $(".collapsible").show();
         console.log(data)
         for (let i = 0; i < data.tracks.track.length; i++) {
-            var obj = data.tracks.track[i].image[2];
+            var obj = data.tracks.track[i].image[3];
             $(".collapsible").append(`
                      <li class="resultList">
                         <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.tracks.track[i].name} - ${data.tracks.track[i].artist.name}</div>
