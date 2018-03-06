@@ -138,7 +138,8 @@ $(document).on("click", "#shareCommunity", function () {
   database.ref(songName).set({
     added: true,
     comments: [],
-    reactions: []
+    reactions: [],
+    song:songName
   });
 });
 

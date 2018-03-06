@@ -116,4 +116,18 @@ else {
 
 
 })
+
+var arrayOfComments = []
+
+$(document).on("click", ".btn", function(){
     
+    var comment = $("#comment-input").val();
+    var songName= $(this).attr("class");
+    console.log(songName);
+  database.ref(songName).set({
+    added: true,
+    comments: [],
+    reactions: []
+  });
+
+})
