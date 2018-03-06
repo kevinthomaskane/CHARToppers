@@ -75,6 +75,8 @@ database.ref().on("value", function(snap) {
 }
 
   $(document).on("click", "#playYoutube", function(){
+      $(".emoji").attr("id", $(this).attr("class"))
+      $("input").attr("id", $(this).attr("class"))
     
 var search = $(this).attr("class");     
     youtubeCall(search)
