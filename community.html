@@ -43,7 +43,7 @@
     <!-- Side Nav -->
     <ul class="side-nav fixed grey lighten-1">
         <!-- Apply favorite cards here -->
-        <ul class="collapsible popout" data-collapsible="accordion"></ul>
+        <ul class="collapsible" data-collapsible="accordion"></ul>
     </ul>
     <!-- END: Side Nav Bar -->
 
@@ -75,8 +75,12 @@
                         <a class='dropdown-button btn' href='#' data-activates='dropdown1'>&#x1F923</a>
                             <!-- Dropdown Structure -->
                             <ul id='dropdown1' class='dropdown-content'>
-                                <li><a href="#!">&#x1F923</a></li>
-                                <li><a href="#!">&#x1F923</a></li>
+                                <a class="emoji" href="#!">&#x1F923</a>
+                                <a class="emoji" href="#!">&#x1F923</a>
+                                <a class="emoji" href="#!">&#x1F923</a>
+                                <a class="emoji" href="#!">&#x1F923</a>
+                                <a class="emoji" href="#!">&#x1F923</a>
+                                <a class="emoji" href="#!">&#x1F923</a>
                             </ul>
                     </div>
                 </div>
@@ -86,7 +90,10 @@
                     <div id="commentBox">
                         <div class="row commentInput">
                             <div class="comment">
-                                <textarea></textarea><button class="btn" type="submit">Submit</button>
+                                <form>
+                                    <input id="comment-input" type="text" value="Comment">
+                                    <input id="submit-btn" class="btn" type="submit" value="Submit">
+                                </form>
                             </div>
                         </div>
                     </div>

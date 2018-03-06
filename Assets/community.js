@@ -40,8 +40,8 @@ database.ref().on("value", function(snap) {
             var obj = data.results.trackmatches.track[0].image[2];
             $(".collapsible").append(`
                     <li class="resultList">
-                    <div class="collapsible-header truncate"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[0].name} - ${data.results.trackmatches.track[0].artist}</div>
-                    <div class="collapsible-body">
+                    <div class="collapsible-header truncate z-depth-1"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[0].name} - ${data.results.trackmatches.track[0].artist}</div>
+                    <div class="collapsible-body z-depth-1">
                     <a id="playYoutube" class="${data.results.trackmatches.track[0].name}"href="#"><i class="fab fa-youtube"></i> Play YouTube video</a> <br>
                     <a id="addFavorite" class="${data.results.trackmatches.track[0].name}" href="#"><i class="far fa-star"></i> Add to your favorites</a>
                     </div>

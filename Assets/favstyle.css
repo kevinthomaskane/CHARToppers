@@ -39,7 +39,7 @@ body {
 /* Styling for the collapsible */
 .collapsible{
     margin-left: 40px;
-    width: 100%;
+    width: 285px;
     
 }
 
@@ -56,11 +56,14 @@ body {
     vertical-align: middle;
     padding: 0px;
     margin-top: 10px;
+    margin-left: 10px;
     background-color: #9e9e9e !important;
 }
 .collapsible-body{
     background-color: #9e9e9e !important;
     padding-left: 20px !important;
+    width: 275px;
+    margin-left: 10px;
 }
 
 .collapsible-body a {
@@ -122,11 +125,11 @@ box-shadow: 0 1px 0 0 #9e9e9e !important;
     margin-top: 100px;
 }
 
-.slider {
+.row, .carousel {
     z-index: -1;
 }
 
-.row, .video-lyrics {
+.video-lyrics {
     z-index: 1;
 }
 
@@ -151,3 +154,5 @@ box-shadow: 0 1px 0 0 #9e9e9e !important;
 .far {
     color: gold;
 }
+.carousel .carousel-item {
+    width:300px !important;}
