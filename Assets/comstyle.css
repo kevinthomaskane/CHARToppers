@@ -193,3 +193,15 @@ textarea {
 #submit-btn {
     background-color: #42a5f5;
 }
+
+.collection a.collection-item{
+    color: black;
+}
+
+.fas{
+    color: #42a5f5;
+}
+
+#commentArea {
+    overflow: auto;
+}

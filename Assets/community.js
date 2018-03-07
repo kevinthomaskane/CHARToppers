@@ -78,10 +78,11 @@ function writeToResults(song){
 database.ref(song).on("value", function(snap) {
 
     snap.forEach(function(child){
-        
         var com = child.val().comment
         if(com !== undefined){
-        $("#commentArea").append(" "+ com + "<br>");
+        $("#commentArea").append(`
+        <a href="#!" class="collection-item"><i class="fas fa-comment-alt"></i> ${com}</a>      
+        `);
         }
     })
 })  
