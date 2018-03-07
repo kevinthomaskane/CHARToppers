@@ -125,13 +125,13 @@ box-shadow: 0 1px 0 0 #9e9e9e !important;
     margin-top: 100px;
 }
 
-.row, .carousel {
+/* .row, .carousel {
     z-index: -1;
 }
 
 .video-lyrics {
     z-index: 1;
-}
+} */
 
 .video-lyrics {
     margin-top: -400px;

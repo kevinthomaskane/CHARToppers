@@ -51,6 +51,8 @@ var title = "";
 var artist = "";
 
 $(document).on("click", "#playYoutube", function () {
+    $(".carousel").css("z-index", "-1");
+    $(".video-lyrics").css("z-index", "1");
     var search = $(this).attr("class")
     var songInfo = $(this).parent().parent().text();
     var songInfoSplit = songInfo.split("Play");

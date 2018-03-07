@@ -1,3 +1,8 @@
+$(document).ready(function () {
+    $('.slider').slider();
+
+});
+
 // Initialize Firebase
 
 var config = {
@@ -85,6 +90,10 @@ function writeToResults(song) {
 };
 
 $(document).on("click", "#playYoutube", function () {
+    $(".video-lyrics").css("display", "block");
+    $(".slider").css("z-index", "-1");
+    $(".video-lyrics").css("z-index", "1");
+    $(".slider").empty();
     $("#commentArea").empty();
     $(".emoji").attr("id", $(this).attr("class"))
     $(".btn").attr("id", $(this).attr("class"))
