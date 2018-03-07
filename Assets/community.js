@@ -1,4 +1,5 @@
 // Initialize Firebase
+
 var config = {
     apiKey: "AIzaSyBNbAVWvS2T4Zd8C24AdMh8mil2LilBvMg",
     authDomain: "unexmusicgroupproject.firebaseapp.com",
@@ -12,24 +13,13 @@ var config = {
 
 
   var database = firebase.database();
-
   
-
-$(document).on("click", "#shareCommunity", function () {
-    var songName= $(this).attr("class");
-    console.log(songName);
-  database.ref(songName).set({
-    added: true,
-    comments: [],
-    reactions: []
-  });
-});
 
 database.ref().on("value", function(snap) {
     
     var songList= snap.val();
-    console.log(songList);
-
+    // console.log(snap.val()[songName])
+    $(".collapsible").empty();
     for(var prop in songList) {
         console.log(prop);
         $.ajax({
@@ -42,8 +32,8 @@ database.ref().on("value", function(snap) {
                     <li class="resultList">
                     <div class="collapsible-header truncate z-depth-1"><img src="${obj[Object.keys(obj)[0]]}">${data.results.trackmatches.track[0].name} - ${data.results.trackmatches.track[0].artist}</div>
                     <div class="collapsible-body z-depth-1">
-                    <a id="playYoutube" class="${data.results.trackmatches.track[0].name}"href="#"><i class="fab fa-youtube"></i> Play YouTube video</a> <br>
-                    <a id="addFavorite" class="${data.results.trackmatches.track[0].name}" href="#"><i class="far fa-star"></i> Add to your favorites</a>
+                    <a id="playYoutube" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}"href="#"><i class="fab fa-youtube"></i> Play YouTube video</a> <br>
+                    <a id="addFavorite" class="${data.results.trackmatches.track[0].name} ${data.results.trackmatches.track[0].artist}" href="#"><i class="far fa-star"></i> Add to your favorites</a>
                     </div>
                     </li>  
             `)
@@ -51,9 +41,11 @@ database.ref().on("value", function(snap) {
         }) 
     }
 
-    
-    
-  });
+    });
+
+
+
+
 
   function youtubeCall(song) {
     event.preventDefault();
@@ -70,13 +62,36 @@ database.ref().on("value", function(snap) {
         console.log(vidId);
         $(".slider").html('')
         $("#video").html("<blockquote class='embedly-card'><h4><a href='https://www.youtube.com/watch?v=" + vidId + "'></a></h4></blockquote>")
+
+        var comments = firebase.database().ref(song);
+        comments.on("child_added", function(data, prevChildKey){
+            var newComment = data.val();
+            console.log(newComment.comment)
+       })
+        writeToResults(song)
     });
 
 }
 
+function writeToResults(song){
+    $("#commentArea").empty();
+database.ref(song).on("value", function(snap) {
+
+    snap.forEach(function(child){
+        
+        var com = child.val().comment
+        if(com !== undefined){
+        $("#commentArea").append(" "+ com + "<br>");
+        }
+    })
+})  
+    
+};
+
   $(document).on("click", "#playYoutube", function(){
+      $("#commentArea").empty();
       $(".emoji").attr("id", $(this).attr("class"))
-      $("input").attr("id", $(this).attr("class"))
+      $(".btn").attr("id", $(this).attr("class"))
     
 var search = $(this).attr("class");     
     youtubeCall(search)
@@ -117,17 +132,35 @@ else {
 
 })
 
-var arrayOfComments = []
 
-$(document).on("click", ".btn", function(){
-    
+
+
+$(document).on("click", ".btn", function(event){
+    $("#commentArea").empty();
+    event.preventDefault();
+    //arrayOfComments=[];
     var comment = $("#comment-input").val();
-    var songName= $(this).attr("class");
+    //arrayOfComments.push(comment)
+    songName= $(this).attr("id");
     console.log(songName);
-  database.ref(songName).set({
-    added: true,
-    comments: [],
-    reactions: []
-  });
+    database.ref(songName).push({
+    comment
+    })
+    writeToResults(songName)
 
-})
+    // database.ref(songName).on("child_added", function(snap) {
+        
+    //     var commentList = snap.val();
+    //     console.log(commentList);
+        
+    //         if (commentList.comment){
+    //             var com = commentList.comment
+    //             console.log(commentList.comment)
+    //             $("#commentArea").append(" "+ com + "<br>");
+            
+    //         }
+        
+    // });
+  
+   });
+
