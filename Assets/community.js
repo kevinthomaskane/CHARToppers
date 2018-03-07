@@ -7,25 +7,25 @@ var config = {
     projectId: "unexmusicgroupproject",
     storageBucket: "unexmusicgroupproject.appspot.com",
     messagingSenderId: "360432454628"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 
 
-  var database = firebase.database();
-  
+var database = firebase.database();
 
-database.ref().on("value", function(snap) {
-    
-    var songList= snap.val();
+
+database.ref().on("value", function (snap) {
+
+    var songList = snap.val();
     // console.log(snap.val()[songName])
     $(".collapsible").empty();
-    for(var prop in songList) {
+    for (var prop in songList) {
         console.log(prop);
         $.ajax({
             method: "GET",
             url: "https://ws.audioscrobbler.com/2.0/?method=track.search&track=" + prop + "&api_key=6efca9dcca0f53fefbaf77e99b6dddf2&format=json"
-        }).done(function (data){
+        }).done(function (data) {
             console.log(data)
             var obj = data.results.trackmatches.track[0].image[2];
             $(".collapsible").append(`
@@ -38,16 +38,16 @@ database.ref().on("value", function(snap) {
                     </li>  
             `)
             $("#resultsArea").html("")
-        }) 
+        })
     }
 
-    });
+});
 
 
 
 
 
-  function youtubeCall(song) {
+function youtubeCall(song) {
     event.preventDefault();
     var search = song
     console.log(search);
@@ -63,42 +63,37 @@ database.ref().on("value", function(snap) {
         $(".slider").html('')
         $("#video").html("<blockquote class='embedly-card'><h4><a href='https://www.youtube.com/watch?v=" + vidId + "'></a></h4></blockquote>")
 
-        var comments = firebase.database().ref(song);
-        comments.on("child_added", function(data, prevChildKey){
-            var newComment = data.val();
-            console.log(newComment.comment)
-       })
         writeToResults(song)
     });
 
 }
 
-function writeToResults(song){
+function writeToResults(song) {
     $("#commentArea").empty();
-database.ref(song).on("value", function(snap) {
+    database.ref(song).on("value", function (snap) {
 
-    snap.forEach(function(child){
-        var com = child.val().comment
-        if(com !== undefined){
-        $("#commentArea").append(`
+        snap.forEach(function (child) {
+            var com = child.val().comment
+            if (com !== undefined) {
+                $("#commentArea").append(`
         <a href="#!" class="collection-item"><i class="fas fa-comment-alt"></i> ${com}</a>      
         `);
-        }
+            }
+        })
     })
-})  
-    
+
 };
 
-  $(document).on("click", "#playYoutube", function(){
-      $("#commentArea").empty();
-      $(".emoji").attr("id", $(this).attr("class"))
-      $(".btn").attr("id", $(this).attr("class"))
-    
-var search = $(this).attr("class");     
-    youtubeCall(search)
-  });
+$(document).on("click", "#playYoutube", function () {
+    $("#commentArea").empty();
+    $(".emoji").attr("id", $(this).attr("class"))
+    $(".btn").attr("id", $(this).attr("class"))
 
-  if (localStorage.getItem("playlistSong")) {
+    var search = $(this).attr("class");
+    youtubeCall(search)
+});
+
+if (localStorage.getItem("playlistSong")) {
     var arrayOfFavorites = JSON.parse(localStorage.getItem("playlistSong"));
 
 }
@@ -114,7 +109,7 @@ else {
     arrayOfImages = [];
 }
 
-  $(document).on("click", "#addFavorite", function () {
+$(document).on("click", "#addFavorite", function () {
     Materialize.toast('Added to Favorites', 2000, "blue")
     var playlistSong = $(this).attr("class")
     var favoriteImage = $(this).parent().parent().children().find("img").attr("src")
@@ -136,34 +131,19 @@ else {
 
 
 
-$(document).on("click", ".btn", function(event){
+$(document).on("click", ".btn", function (event) {
+    
     $("#commentArea").empty();
     event.preventDefault();
-    //arrayOfComments=[];
     var comment = $("#comment-input").val();
-    //arrayOfComments.push(comment)
-    songName= $(this).attr("id");
+    songName = $(this).attr("id");
     console.log(songName);
-    if (comment !== ""){
-    database.ref(songName).push({
-    comment
-    })
-}
+    if (comment !== "") {
+        database.ref(songName).push({
+            comment
+        })
+    }
     writeToResults(songName)
-
-    // database.ref(songName).on("child_added", function(snap) {
-        
-    //     var commentList = snap.val();
-    //     console.log(commentList);
-        
-    //         if (commentList.comment){
-    //             var com = commentList.comment
-    //             console.log(commentList.comment)
-    //             $("#commentArea").append(" "+ com + "<br>");
-            
-    //         }
-        
-    // });
-  
-   });
+    $("#comment-input").val("")
+});
 
