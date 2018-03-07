@@ -144,9 +144,11 @@ $(document).on("click", ".btn", function(event){
     //arrayOfComments.push(comment)
     songName= $(this).attr("id");
     console.log(songName);
+    if (comment !== ""){
     database.ref(songName).push({
     comment
     })
+}
     writeToResults(songName)
 
     // database.ref(songName).on("child_added", function(snap) {
