@@ -1,4 +1,4 @@
-# Project-1
+# CharToppers
 
 <p>This project was created using javascript, jQuery, Firbase, and localStorage.  On the home page, browse through songs compiled from the lastFM API.  If you like a song, add it to your favorites or share with the community.</p>
 
